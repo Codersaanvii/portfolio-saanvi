@@ -73,7 +73,7 @@ function ScallopCard({
 function Pushpin() {
   return (
     <img
-      src="/Images/pushpin.png"
+      src="/images/pushpin.png"
       alt=""
       aria-hidden="true"
       style={{
@@ -95,7 +95,7 @@ function Pushpin() {
 function Paperclip() {
   return (
     <img
-      src="/Images/paperclip.png"
+      src="/images/paperclip.png"
       alt=""
       aria-hidden="true"
       style={{
