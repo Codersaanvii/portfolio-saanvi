@@ -45,3 +45,24 @@ body {
 .nav-link {
   @apply relative text-[0.85rem] font-sans font-medium px-4 py-1.5 transition-colors;
 }
+
+/* Cork card stack + hover effect */
+.cork-card { position: relative; transition: transform 0.25s ease; }
+.cork-card-1 { transform: rotate(-1.5deg); }
+.cork-card-2 { transform: rotate(0.5deg); }
+.cork-card-3 { transform: rotate(-0.8deg); }
+.cork-card-1:hover, .cork-card-2:hover, .cork-card-3:hover { transform: rotate(5deg); }
+.cork-card::before, .cork-card::after {
+  content: ''; position: absolute; inset: 0;
+  border-radius: 12px; transition: transform 0.25s ease; z-index: -1;
+}
+.cork-card::before { background: #F5F0E8; transform: rotate(-2deg) translateY(-1%); }
+.cork-card::after  { background: #EDE8DF; transform: rotate(1.5deg) translateY(0.5%); }
+.cork-card:hover::before { transform: rotate(-4deg) translateY(-2%); }
+.cork-card:hover::after  { transform: rotate(4deg) translateY(2%); }
+
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}

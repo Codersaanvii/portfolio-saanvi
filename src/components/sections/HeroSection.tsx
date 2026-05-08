@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 
 const SERRATED = "radial-gradient(circle, transparent 4px, #000 4px) -4px -4px / 8px 8px";
@@ -19,9 +18,6 @@ const GRID_BG = {
 };
 
 export default function HeroSection() {
-  // Default true — shows SD placeholder until a real photo is placed at /public/images/saanvi.jpg
-  const [imgError, setImgError] = useState(true);
-
   return (
     <div
       id="hero"
@@ -62,19 +58,26 @@ export default function HeroSection() {
                 style={{ boxShadow: "inset 0 0 0 3px rgba(45,122,110,0.25)" }}
               />
 
-              {imgError ? (
-                <div className="w-full h-full bg-teal-light flex items-center justify-center" style={{ minHeight: "inherit" }}>
-                  <span className="font-serif text-[3rem] text-muted font-bold italic">SD</span>
-                </div>
-              ) : (
-                <img
-                  src="/images/saanvi.jpg"
-                  alt="Saanvi Desai"
-                  className="w-full h-full object-cover"
-                  style={{ objectPosition: "center 20%" }}
-                  onError={() => setImgError(true)}
-                />
-              )}
+              <img
+                src="/images/saanvi.jpg"
+                alt="Saanvi Desai"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center top',
+                  borderRadius: '2px 0 0 2px',
+                  display: 'block'
+                }}
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  if (e.currentTarget.parentElement) {
+                    e.currentTarget.parentElement.style.background = '#B2D8D2';
+                    e.currentTarget.parentElement.innerHTML += 
+                      '<span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:Playfair Display,serif;font-size:3rem;color:#5A7A76;font-style:italic">SD</span>';
+                  }
+                }}
+              />
 
               {/* Script overlay */}
               <div className="absolute bottom-5 left-5 z-20">

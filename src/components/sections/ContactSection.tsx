@@ -5,12 +5,11 @@ import Section from "@/components/ui/Section";
 const contactLinks = [
   { label: "saanvivdesai@gmail.com",    href: "mailto:saanvivdesai@gmail.com" },
   { label: "linkedin.com/in/saanvivdesai", href: "https://linkedin.com/in/saanvivdesai" },
-  { label: "+91 7506490790",            href: "tel:+917506490790" },
 ];
 
 export default function ContactSection() {
   return (
-    <div className="bg-teal border-t-2 border-teal-dark">
+    <div className="bg-teal">
       <Section id="contact">
         <div className="text-center">
           <h2 className="font-serif font-bold text-[2.5rem] text-white mb-8 leading-tight">

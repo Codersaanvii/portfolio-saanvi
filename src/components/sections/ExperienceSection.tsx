@@ -25,7 +25,7 @@ export default function ExperienceSection() {
   return (
     <div className="bg-butter border-t border-teal-light/60">
       <Section id="experience">
-        <h2 className="font-serif font-bold italic text-[1.75rem] text-dark mb-12 text-center md:text-left">
+        <h2 className="font-serif font-bold italic text-[1.75rem] text-dark mb-12 text-center">
           Experience
         </h2>
 

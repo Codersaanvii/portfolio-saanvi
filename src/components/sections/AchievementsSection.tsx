@@ -12,14 +12,14 @@ const achievements = [
     title: "Event Operations",
     sub: "GDSC FRCRCE",
     body: "Co-organized 2 international hackathons and 2 startup launchpads.",
-    cardClass: "bg-peach border border-peach",
+    cardClass: "bg-peach border-2 border-coral/20",
     shadowColor: "#1E5C52",
   },
   {
     title: "Conference Anchor",
     sub: "Agile Mumbai Conference",
     body: "Hosted a professional technology and business conference.",
-    cardClass: "bg-babyblue border border-teal-light",
+    cardClass: "bg-babyblue border-2 border-teal-light",
     shadowColor: "#1E5C52",
   },
 ];
@@ -28,7 +28,7 @@ export default function AchievementsSection() {
   return (
     <div className="bg-butter border-t border-teal-light/60">
       <Section id="achievements">
-        <h2 className="font-serif font-bold italic text-[1.75rem] text-teal mb-10 text-center md:text-left">
+        <h2 className="font-serif font-bold italic text-[1.75rem] text-teal mb-10 text-center">
           Highlights
         </h2>
 
