@@ -51,7 +51,7 @@ export default function HeroSection() {
           <div className="flex flex-col md:flex-row min-h-[280px] md:min-h-[420px]">
 
             {/* ── LEFT: Photo Panel ── */}
-            <div className="relative w-full md:w-[45%] shrink-0 overflow-hidden min-h-[280px] md:min-h-[420px]">
+            <div className="relative w-full md:w-[45%] shrink-0 overflow-hidden" style={{ minHeight: 280, alignSelf: 'stretch' }}>
               {/* Inset aged border */}
               <div
                 className="absolute inset-0 z-10 pointer-events-none"
@@ -62,20 +62,14 @@ export default function HeroSection() {
                 src="/images/saanvi.jpg"
                 alt="Saanvi Desai"
                 style={{
+                  position: 'absolute',
+                  inset: 0,
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
                   objectPosition: 'center top',
                   borderRadius: '2px 0 0 2px',
                   display: 'block'
-                }}
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                  if (e.currentTarget.parentElement) {
-                    e.currentTarget.parentElement.style.background = '#B2D8D2';
-                    e.currentTarget.parentElement.innerHTML += 
-                      '<span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:Playfair Display,serif;font-size:3rem;color:#5A7A76;font-style:italic">SD</span>';
-                  }
                 }}
               />
 
