@@ -59,7 +59,7 @@ export default function HeroSection() {
               />
 
               <img
-                src="/images/saanvi.jpg"
+                src="/Images/saanvi.jpg"
                 alt="Saanvi Desai"
                 style={{
                   width: '100%',
