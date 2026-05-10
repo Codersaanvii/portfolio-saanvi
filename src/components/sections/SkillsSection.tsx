@@ -82,7 +82,6 @@ SkillBubble.displayName = "SkillBubble";
 export default function SkillsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const shapeRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const animated = useRef(false);
 
   useEffect(() => {
     shapeRefs.current.forEach((el, i) => {
@@ -97,8 +96,8 @@ export default function SkillsSection() {
     
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !animated.current) {
-          animated.current = true;
+        if (entry.isIntersecting) {
+          // Pop bubbles in
           shapeRefs.current.forEach((el, i) => {
             if (!el) return;
             const delay = i * 0.08 + gsap.utils.random(-0.03, 0.03);
@@ -108,6 +107,12 @@ export default function SkillsSection() {
               delay,
               ease: 'back.out(1.5)'
             });
+          });
+        } else {
+          // Reset to hidden so animation replays on next scroll-in
+          shapeRefs.current.forEach((el, i) => {
+            if (!el) return;
+            gsap.set(el, { scale: 0, rotation: rotations[i % 5] });
           });
         }
       },

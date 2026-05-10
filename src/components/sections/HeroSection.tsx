@@ -1,6 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
+import StickerPeel from "@/components/StickerPeel";
 
 const SERRATED = "radial-gradient(circle, transparent 4px, #000 4px) -4px -4px / 8px 8px";
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E")`;
@@ -17,6 +20,43 @@ const GRID_BG = {
   backgroundPosition: "-1px -1px, -1px -1px, -1px -1px, -1px -1px",
 };
 
+// ── Fixed sticker layer — portalled into document.body so no ancestor
+// transform/filter can break position:fixed on the stickers ──────────────
+ function FixedStickerLayer() {
+  const [pos, setPos] = useState<null | {
+    cat: { x: number; y: number };
+    strawberry: { x: number; y: number };
+    waves: { x: number; y: number };
+    shell: { x: number; y: number };
+  }>(null);
+
+  useEffect(() => {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    setPos({
+      cat:        { x: Math.round(w * 0.03), y: Math.round(h * 0.18) },
+      strawberry: { x: Math.round(w * 0.82), y: Math.round(h * 0.09) },
+      waves:      { x: Math.round(w * 0.03), y: Math.round(h * 0.62) },
+      shell:      { x: Math.round(w * 0.84), y: Math.round(h * 0.60) },
+    });
+  }, []);
+
+  if (!pos) return null;
+
+  const m = window.innerWidth < 768;
+
+  // Portal renders directly into <body> — no wrapper div, no ancestor transforms
+  return createPortal(
+    <>
+      <StickerPeel imageSrc="/images/stickers/cat.png"        width={m ? 120 : 170} rotate={-8}  peelBackHoverPct={35} peelBackActivePct={55} shadowIntensity={0.65} lightingIntensity={0.05} initialPosition={pos.cat}        peelDirection={15}  fixed />
+      <StickerPeel imageSrc="/images/stickers/strawberry.png" width={m ? 95  : 135} rotate={10}  peelBackHoverPct={35} peelBackActivePct={55} shadowIntensity={0.6}  lightingIntensity={0.04} initialPosition={pos.strawberry} peelDirection={340} fixed />
+      <StickerPeel imageSrc="/images/stickers/waves.png"      width={m ? 140 : 200} rotate={-5}  peelBackHoverPct={35} peelBackActivePct={55} shadowIntensity={0.7}  lightingIntensity={0.06} initialPosition={pos.waves}       peelDirection={200} fixed />
+      <StickerPeel imageSrc="/images/stickers/shell.png"      width={m ? 110 : 155} rotate={12}  peelBackHoverPct={35} peelBackActivePct={55} shadowIntensity={0.62} lightingIntensity={0.04} initialPosition={pos.shell}       peelDirection={160} fixed />
+    </>,
+    document.body
+  );
+}
+
 export default function HeroSection() {
   return (
     <div
@@ -24,17 +64,42 @@ export default function HeroSection() {
       className="relative min-h-screen flex items-center justify-center py-24 px-4 overflow-hidden"
       style={GRID_BG}
     >
-      {/* Airmail stripe border wrapper */}
+      {/* Stickers — fixed to viewport via portal */}
+      <FixedStickerLayer />
+
+      {/* Hint — absolute within hero so it only shows in hero section */}
+      <div
+        style={{
+          position: "absolute",
+          left: "4%",
+          top: "calc(18% + 180px)",
+          fontFamily: "var(--font-space-mono)",
+          fontSize: "0.6rem",
+          color: "#5A7A76",
+          textTransform: "uppercase",
+          letterSpacing: "0.08em",
+          pointerEvents: "none",
+          whiteSpace: "nowrap",
+          zIndex: 21,
+          animation: "stickerHintFadeIn 0.5s ease 2s both",
+        }}
+      >
+        ↑ drag &amp; place me
+      </div>
+
+      {/* ── Postcard — z:10, below the sticker layer ── */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
-        className="relative z-10 w-full max-w-[920px] mx-auto"
+        className="relative w-full max-w-[920px] mx-auto"
         style={{
-          background: "repeating-linear-gradient(-45deg,#2D7A6E,#2D7A6E 10px,#FFE4D5 10px,#FFE4D5 20px)",
+          background:
+            "repeating-linear-gradient(-45deg,#2D7A6E,#2D7A6E 10px,#FFE4D5 10px,#FFE4D5 20px)",
           padding: "10px",
           borderRadius: "6px",
           boxSizing: "border-box",
+          zIndex: 10,
         }}
       >
         {/* Inner card */}
@@ -51,7 +116,7 @@ export default function HeroSection() {
           <div className="flex flex-col md:flex-row min-h-[280px] md:min-h-[420px]">
 
             {/* ── LEFT: Photo Panel ── */}
-            <div className="relative w-full md:w-[45%] shrink-0 overflow-hidden" style={{ minHeight: 280, alignSelf: 'stretch' }}>
+            <div className="relative w-full md:w-[45%] shrink-0 overflow-hidden" style={{ minHeight: 280, alignSelf: "stretch" }}>
               {/* Inset aged border */}
               <div
                 className="absolute inset-0 z-10 pointer-events-none"
@@ -62,14 +127,14 @@ export default function HeroSection() {
                 src="/images/saanvi.jpg"
                 alt="Saanvi Desai"
                 style={{
-                  position: 'absolute',
+                  position: "absolute",
                   inset: 0,
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'center top',
-                  borderRadius: '2px 0 0 2px',
-                  display: 'block'
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "center top",
+                  borderRadius: "2px 0 0 2px",
+                  display: "block",
                 }}
               />
 
@@ -99,7 +164,8 @@ export default function HeroSection() {
               <div
                 className="hidden md:flex absolute items-center justify-center"
                 style={{
-                  width: 60, height: 60,
+                  width: 60,
+                  height: 60,
                   border: "2px solid rgba(45,122,110,0.3)",
                   borderRadius: "50%",
                   top: "0.5rem",
