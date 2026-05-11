@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import StickerPeel from "@/components/StickerPeel";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 
 const SERRATED = "radial-gradient(circle, transparent 4px, #000 4px) -4px -4px / 8px 8px";
 const NOISE = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E")`;
@@ -92,28 +93,32 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
-        className="relative w-full max-w-[920px] mx-auto"
-        style={{
-          background:
-            "repeating-linear-gradient(-45deg,#2D7A6E,#2D7A6E 10px,#FFE4D5 10px,#FFE4D5 20px)",
-          padding: "10px",
-          borderRadius: "6px",
-          boxSizing: "border-box",
-          zIndex: 10,
-        }}
+        className="relative w-full max-w-[920px] mx-auto z-10"
       >
-        {/* Inner card */}
-        <div
-          className="relative overflow-hidden"
-          style={{
-            borderRadius: "4px",
-            backgroundColor: "#fefce8",
-            backgroundImage: NOISE,
-            backgroundBlendMode: "multiply",
-            boxSizing: "border-box",
-          }}
-        >
-          <div className="flex flex-col md:flex-row min-h-[280px] md:min-h-[420px]">
+        <CardContainer className="w-full">
+          <CardBody
+            className="w-full h-auto"
+            style={{
+              background:
+                "repeating-linear-gradient(-45deg,#2D7A6E,#2D7A6E 10px,#FFE4D5 10px,#FFE4D5 20px)",
+              padding: "10px",
+              borderRadius: "6px",
+              boxSizing: "border-box",
+            }}
+          >
+            {/* Inner card */}
+            <CardItem
+              translateZ="50"
+              className="relative overflow-hidden w-full"
+              style={{
+                borderRadius: "4px",
+                backgroundColor: "#fefce8",
+                backgroundImage: NOISE,
+                backgroundBlendMode: "multiply",
+                boxSizing: "border-box",
+              }}
+            >
+              <div className="flex flex-col md:flex-row min-h-[280px] md:min-h-[420px]">
 
             {/* ── LEFT: Photo Panel ── */}
             <div className="relative w-full md:w-[45%] shrink-0 overflow-hidden" style={{ minHeight: 280, alignSelf: "stretch" }}>
@@ -256,7 +261,9 @@ export default function HeroSection() {
             </div>
 
           </div>
-        </div>
+            </CardItem>
+          </CardBody>
+        </CardContainer>
       </motion.div>
     </div>
   );
