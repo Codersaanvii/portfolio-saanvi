@@ -218,7 +218,7 @@ export default function ProjectsSection() {
   }, [selectedProject]);
 
   return (
-    <div className="bg-butter border-t border-teal-light/60">
+    <div className="bg-butter">
       <Section id="projects">
         <h2 className="font-serif font-bold italic text-[1.75rem] text-teal mb-2 text-center">
           Projects

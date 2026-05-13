@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Section from "@/components/ui/Section";
 import React from "react";
+import ScribbleBackground from "@/components/ScribbleBackground";
 
 const cardsData = [
   {
@@ -82,13 +83,37 @@ const cardsData = [
 
 export default function ExperienceSection() {
   return (
-    <div className="bg-butter border-t border-teal-light/60">
+    <div className="bg-butter" style={{ position: 'relative', overflow: 'hidden' }}>
+      {/* Background Layer: Grain + Scribbles with edge blending */}
+      <div 
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0,
+          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+        }}
+      >
+        {/* Grainy Texture Overlay */}
+        <div 
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            opacity: 0.15,
+            pointerEvents: 'none',
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        />
+        <ScribbleBackground />
+      </div>
       <Section id="experience">
-        <h2 className="font-serif font-bold italic text-[1.75rem] text-dark mb-[3rem] text-center">
+        <h2 className="font-serif font-bold italic text-[1.75rem] text-dark mb-[3rem] text-center" style={{ position: 'relative', zIndex: 1 }}>
           Experience
         </h2>
 
-        <div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap items-center md:items-stretch lg:items-start justify-center gap-4 md:gap-6 lg:gap-0 lg:-space-x-5 relative px-4 md:px-8 lg:px-[4rem] lg:pt-[2rem] lg:pb-[4rem] max-w-5xl mx-auto">
+        <div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap items-center md:items-stretch lg:items-start justify-center gap-4 md:gap-6 lg:gap-0 lg:-space-x-5 relative px-4 md:px-8 lg:px-[4rem] lg:pt-[2rem] lg:pb-[4rem] max-w-5xl mx-auto" style={{ position: 'relative', zIndex: 1 }}>
           {cardsData.map((card, index) => (
             <motion.div
               key={card.id}

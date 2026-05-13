@@ -116,7 +116,7 @@ function Paperclip() {
 /* ── About Section ── */
 export default function AboutSection() {
   return (
-    <div className="bg-butter border-t border-teal-light/60">
+    <div className="bg-butter">
       <Section id="about">
         <h2 className="font-serif font-bold italic text-[1.75rem] text-teal mb-16 text-center">
           About Me
