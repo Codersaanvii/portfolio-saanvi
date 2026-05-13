@@ -22,7 +22,7 @@ const GRID_BG = {
 
 // ── Fixed sticker layer — portalled into document.body so no ancestor
 // transform/filter can break position:fixed on the stickers ──────────────
- function FixedStickerLayer() {
+function FixedStickerLayer() {
   const [pos, setPos] = useState<null | {
     cat: { x: number; y: number };
     strawberry: { x: number; y: number };
@@ -34,10 +34,10 @@ const GRID_BG = {
     const w = window.innerWidth;
     const h = window.innerHeight;
     setPos({
-      cat:        { x: Math.round(w * 0.03), y: Math.round(h * 0.18) },
+      cat: { x: Math.round(w * 0.03), y: Math.round(h * 0.18) },
       strawberry: { x: Math.round(w * 0.82), y: Math.round(h * 0.09) },
-      waves:      { x: Math.round(w * 0.03), y: Math.round(h * 0.62) },
-      shell:      { x: Math.round(w * 0.84), y: Math.round(h * 0.60) },
+      waves: { x: Math.round(w * 0.03), y: Math.round(h * 0.62) },
+      shell: { x: Math.round(w * 0.84), y: Math.round(h * 0.60) },
     });
   }, []);
 
@@ -48,10 +48,10 @@ const GRID_BG = {
   // Portal renders directly into <body> — no wrapper div, no ancestor transforms
   return createPortal(
     <>
-      <StickerPeel imageSrc="/images/stickers/cat.png"        width={m ? 120 : 170} rotate={-8}  peelBackHoverPct={35} peelBackActivePct={55} shadowIntensity={0.65} lightingIntensity={0.05} initialPosition={pos.cat}        peelDirection={15}  fixed />
-      <StickerPeel imageSrc="/images/stickers/strawberry.png" width={m ? 95  : 135} rotate={10}  peelBackHoverPct={35} peelBackActivePct={55} shadowIntensity={0.6}  lightingIntensity={0.04} initialPosition={pos.strawberry} peelDirection={340} fixed />
-      <StickerPeel imageSrc="/images/stickers/waves.png"      width={m ? 140 : 200} rotate={-5}  peelBackHoverPct={35} peelBackActivePct={55} shadowIntensity={0.7}  lightingIntensity={0.06} initialPosition={pos.waves}       peelDirection={200} fixed />
-      <StickerPeel imageSrc="/images/stickers/shell.png"      width={m ? 110 : 155} rotate={12}  peelBackHoverPct={35} peelBackActivePct={55} shadowIntensity={0.62} lightingIntensity={0.04} initialPosition={pos.shell}       peelDirection={160} fixed />
+      <StickerPeel imageSrc="/images/stickers/cat.png" width={m ? 120 : 170} rotate={-8} peelBackHoverPct={35} peelBackActivePct={55} shadowIntensity={0.65} lightingIntensity={0.05} initialPosition={pos.cat} peelDirection={15} fixed />
+      <StickerPeel imageSrc="/images/stickers/strawberry.png" width={m ? 95 : 135} rotate={10} peelBackHoverPct={35} peelBackActivePct={55} shadowIntensity={0.6} lightingIntensity={0.04} initialPosition={pos.strawberry} peelDirection={340} fixed />
+      <StickerPeel imageSrc="/images/stickers/waves.png" width={m ? 140 : 200} rotate={-5} peelBackHoverPct={35} peelBackActivePct={55} shadowIntensity={0.7} lightingIntensity={0.06} initialPosition={pos.waves} peelDirection={200} fixed />
+      <StickerPeel imageSrc="/images/stickers/shell.png" width={m ? 110 : 155} rotate={12} peelBackHoverPct={35} peelBackActivePct={55} shadowIntensity={0.62} lightingIntensity={0.04} initialPosition={pos.shell} peelDirection={160} fixed />
     </>,
     document.body
   );
