@@ -4,12 +4,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import Section from "@/components/ui/Section";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface Project {
-  title: string;
-  year: string;
-  description: string;
-  tags: string[];
-}
+import ProjectFlipbook, { Project } from "@/components/ui/ProjectFlipbook";
 
 const projects: Project[] = [
   {
@@ -18,97 +13,24 @@ const projects: Project[] = [
     description:
       "Edge-based IDS for ESP32-C6 using compressed XGBoost to classify network traffic as normal or malicious on low-power microcontrollers.",
     tags: ["Python", "XGBoost", "TinyML", "ESP32-C6", "Edge AI"],
+    pages: [
+      {
+        title: "The Problem",
+        content: "IoT networks are highly susceptible to cyberattacks, but conventional Intrusion Detection Systems (IDS) are too resource-heavy to run on low-power edge devices like microcontrollers."
+      },
+      {
+        title: "The Solution",
+        content: "A compressed XGBoost model ported directly onto an ESP32-C6. This allows the edge device to analyze network packets in real-time and classify them as normal or malicious without relying on a cloud server, ensuring low latency and high privacy."
+      },
+      {
+        title: "Results",
+        content: "Achieved over 95% accuracy while maintaining a memory footprint under 200KB, proving that complex machine learning models can effectively secure edge environments directly at the source."
+      }
+    ]
   },
 ];
 
-function BinderClip() {
-  return (
-    <svg width="36" height="28" viewBox="0 0 36 28" style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', zIndex: 5 }}>
-      <rect x="8" y="8" width="20" height="14" rx="2" fill="#2D2D2D"/>
-      <rect x="12" y="10" width="12" height="10" rx="1" fill="#1A1A1A"/>
-      <circle cx="18" cy="6" r="4" fill="#3A3A3A"/>
-      <circle cx="18" cy="6" r="2" fill="#1A1A1A"/>
-      <path d="M8 10 L2 4 L6 4 L10 10Z" fill="#2D2D2D"/>
-      <path d="M28 10 L34 4 L30 4 L26 10Z" fill="#2D2D2D"/>
-    </svg>
-  );
-}
-
-function PaperContent({ project, isPlaceholder, onClose }: { project: Project | null, isPlaceholder?: boolean, onClose?: () => void }) {
-  return (
-    <>
-      <BinderClip />
-      <div style={{ position: 'absolute', inset: 0, background: '#FEFEFE', borderRadius: 'inherit', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'repeating-linear-gradient(to bottom, transparent, transparent 27px, #C8D8E8 27px, #C8D8E8 28px)', backgroundSize: '100% 28px', zIndex: 0, pointerEvents: 'none' }} />
-        
-        {[15, 35, 60, 82].map((top, i) => (
-          <div
-            key={i}
-            style={{ position: 'absolute', left: '10px', top: `${top}%`, width: '8px', height: '8px', borderRadius: '50%', background: '#D0CAC2', boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.2)', zIndex: 2 }}
-          />
-        ))}
-
-        <div style={{ height: '100%', borderLeft: '1.5px solid #F2A5A5', marginLeft: '28px', position: 'relative', zIndex: 1, padding: '16px 12px 12px 8px', paddingBottom: '2rem', display: 'flex', flexDirection: 'column' }}>
-          
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { delay: 0.22, duration: 0.15 } }}
-            exit={{ opacity: 0, transition: { duration: 0.08 } }}
-            className="flex flex-col h-full relative"
-          >
-            {isPlaceholder ? (
-              <div className="mt-auto mb-auto flex justify-center">
-                <span className="font-serif italic text-muted text-[1.1rem]">More coming soon</span>
-              </div>
-            ) : project ? (
-              <>
-                <div className="flex items-baseline gap-2 mb-1" style={{ paddingTop: '8px' }}>
-                  <h3 className="font-serif font-bold italic text-dark m-0 leading-[1.2]" style={{ fontSize: '1.05rem' }}>
-                    {project.title}
-                  </h3>
-                  <span className="font-mono text-[0.6rem] text-muted">
-                    {project.year}
-                  </span>
-                </div>
-
-                <hr style={{ border: 'none', borderTop: '1px solid #C8D8E8', width: '90%', margin: '6px 0' }} />
-
-                <p 
-                  className="font-sans text-dark leading-[1.6]" 
-                  style={{ 
-                    fontSize: '0.8rem',
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden'
-                  }}
-                >
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-1 mt-1.5">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="font-mono px-2 py-[2px] rounded-full bg-peach text-coral" style={{ fontSize: '0.65rem' }}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </>
-            ) : null}
-
-            <button 
-              onClick={(e) => { e.stopPropagation(); onClose?.(); }}
-              className="font-mono text-[0.65rem] text-muted hover:text-dark transition-colors cursor-pointer bg-transparent border-none p-2 whitespace-nowrap"
-              style={{ position: 'absolute', bottom: '12px', left: '50%', transform: 'translateX(-50%)' }}
-            >
-              × close
-            </button>
-          </motion.div>
-        </div>
-      </div>
-    </>
-  );
-}
+// PaperContent removed in favor of ProjectFlipbook
 
 function FolderCard({ project, onOpen }: { project: Project, onOpen: (rect: DOMRect) => void }) {
   const folderRef = useRef<HTMLDivElement>(null);
@@ -257,51 +179,38 @@ export default function ProjectsSection() {
               }}
             />
             
-            {/* Expanding Paper Element */}
+            {/* Project Flipbook Element */}
             <motion.div
               key="paper-modal"
               initial={{
-                position: 'fixed',
-                top: sourceRect.top,
-                left: sourceRect.left,
-                width: sourceRect.width,
-                height: sourceRect.height,
-                borderRadius: 16,
-                opacity: 0.7,
-                zIndex: 60,
-                boxShadow: '0 2px 8px rgba(0,0,0,0.12)'
+                opacity: 0,
               }}
               animate={{
-                top: TARGET.top,
-                left: TARGET.left,
-                width: TARGET.width,
-                height: TARGET.height,
-                borderRadius: 4,
                 opacity: 1,
-                boxShadow: '2px 4px 32px rgba(0,0,0,0.24)'
               }}
               exit={{
-                top: sourceRect.top,
-                left: sourceRect.left,
-                width: sourceRect.width,
-                height: sourceRect.height,
-                borderRadius: 16,
                 opacity: 0,
-                boxShadow: '0 2px 8px rgba(0,0,0,0.08)'
               }}
               transition={{
-                type: 'spring',
-                stiffness: 320,
-                damping: 32,
-                mass: 0.85
+                duration: 0.3,
               }}
               onClick={(e) => e.stopPropagation()}
+              className="fixed inset-0 z-60 flex items-center justify-center p-4 md:p-10"
             >
-              <PaperContent 
-                project={selectedProject === 'placeholder' ? null : selectedProject} 
-                isPlaceholder={selectedProject === 'placeholder'} 
-                onClose={handleClose} 
-              />
+              {selectedProject !== 'placeholder' ? (
+                <ProjectFlipbook project={selectedProject} onClose={handleClose} />
+              ) : (
+                <div className="bg-white p-8 rounded-xl max-w-sm w-full text-center shadow-2xl relative">
+                  <button 
+                    onClick={handleClose}
+                    className="absolute top-4 right-4 text-muted hover:text-dark transition-colors cursor-pointer"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                  </button>
+                  <h3 className="font-serif italic text-dark text-xl mb-2">More coming soon</h3>
+                  <p className="font-sans text-sm text-muted">Stay tuned for more projects.</p>
+                </div>
+              )}
             </motion.div>
           </>
         )}
