@@ -5,10 +5,14 @@ import HTMLFlipBook from "react-pageflip";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-interface ProjectPage {
+interface ProjectPageSection {
   title?: string;
   content?: string;
   image?: string;
+}
+
+interface ProjectPage {
+  sections: ProjectPageSection[];
 }
 
 export interface Project {
@@ -111,34 +115,27 @@ export default function ProjectFlipbook({ project, onClose }: ProjectFlipbookPro
             </div>
           </Page>
 
-          {/* Intro Page */}
-          <Page number={2}>
-            <div className="pt-4">
-              <h3 className="font-serif font-bold text-lg text-teal mb-4 border-b border-gray-200 pb-2">Overview</h3>
-              <p className="font-sans text-sm text-dark leading-[1.8]">
-                {project.description}
-              </p>
-            </div>
-          </Page>
-
           {/* Dynamic Pages */}
           {(project.pages || []).map((page, idx) => (
-            <Page key={`page-${idx}`} number={idx + 3}>
-              <div className="pt-4 h-full flex flex-col">
-                {page.title && (
-                  <h3 className="font-serif font-bold text-lg text-teal mb-4 border-b border-gray-200 pb-2">{page.title}</h3>
-                )}
-                {page.image && (
-                  <div className="w-full h-40 mb-4 relative rounded border border-gray-200 overflow-hidden shadow-sm">
-                    {/* Using div with bg-image since we don't have remote image host config guaranteed */}
-                    <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${page.image})` }} />
+            <Page key={`page-${idx}`} number={idx + 2}>
+              <div className="pt-4 h-full flex flex-col gap-6">
+                {page.sections.map((sec, sIdx) => (
+                  <div key={sIdx}>
+                    {sec.title && (
+                      <h3 className="font-serif font-bold text-lg text-teal mb-2 border-b border-gray-200 pb-1">{sec.title}</h3>
+                    )}
+                    {sec.image && (
+                      <div className="w-full h-40 mb-3 relative rounded border border-gray-200 overflow-hidden shadow-sm">
+                        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${sec.image})` }} />
+                      </div>
+                    )}
+                    {sec.content && (
+                      <p className="font-sans text-sm text-dark leading-[1.8] whitespace-pre-wrap">
+                        {sec.content}
+                      </p>
+                    )}
                   </div>
-                )}
-                {page.content && (
-                  <p className="font-sans text-sm text-dark leading-[1.8] whitespace-pre-wrap">
-                    {page.content}
-                  </p>
-                )}
+                ))}
               </div>
             </Page>
           ))}

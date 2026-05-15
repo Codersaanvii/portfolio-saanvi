@@ -15,16 +15,28 @@ const projects: Project[] = [
     tags: ["Python", "XGBoost", "TinyML", "ESP32-C6", "Edge AI"],
     pages: [
       {
-        title: "The Problem",
-        content: "IoT networks are highly susceptible to cyberattacks, but conventional Intrusion Detection Systems (IDS) are too resource-heavy to run on low-power edge devices like microcontrollers."
+        sections: [
+          {
+            title: "Overview",
+            content: "Edge-based IDS for ESP32-C6 using compressed XGBoost to classify network traffic as normal or malicious on low-power microcontrollers."
+          },
+          {
+            title: "The Problem",
+            content: "IoT networks are highly susceptible to cyberattacks, but conventional Intrusion Detection Systems (IDS) are too resource-heavy to run on low-power edge devices like microcontrollers."
+          }
+        ]
       },
       {
-        title: "The Solution",
-        content: "A compressed XGBoost model ported directly onto an ESP32-C6. This allows the edge device to analyze network packets in real-time and classify them as normal or malicious without relying on a cloud server, ensuring low latency and high privacy."
-      },
-      {
-        title: "Results",
-        content: "Achieved over 95% accuracy while maintaining a memory footprint under 200KB, proving that complex machine learning models can effectively secure edge environments directly at the source."
+        sections: [
+          {
+            title: "The Solution",
+            content: "A compressed XGBoost model ported directly onto an ESP32-C6. This allows the edge device to analyze network packets in real-time and classify them as normal or malicious without relying on a cloud server, ensuring low latency and high privacy."
+          },
+          {
+            title: "Results",
+            content: "Achieved over 95% accuracy while maintaining a memory footprint under 200KB, proving that complex machine learning models can effectively secure edge environments directly at the source."
+          }
+        ]
       }
     ]
   },
