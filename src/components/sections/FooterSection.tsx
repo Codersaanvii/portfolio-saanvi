@@ -61,7 +61,7 @@ export default function FooterSection() {
         {/* Footer bottom */}
         <div className="mt-20 pt-8 border-t-2 border-dark/20 flex flex-col md:flex-row justify-between items-center gap-4 relative z-10">
           <p className="text-cream font-mono font-bold text-sm uppercase">
-            © {new Date().getFullYear()} Saanvi Desai
+            © Saanvi Desai
           </p>
           
           <p className="text-cream font-sans font-bold text-sm bg-dark/20 px-4 py-2 rounded-full backdrop-blur-sm">

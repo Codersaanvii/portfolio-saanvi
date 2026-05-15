@@ -21,6 +21,7 @@ export interface Project {
   description: string;
   tags: string[];
   coverImage?: string;
+  coverVideo?: string;
   pages?: ProjectPage[];
 }
 
@@ -80,7 +81,18 @@ export default function ProjectFlipbook({ project, onClose }: ProjectFlipbookPro
           {/* Cover Page */}
           <Page number={1}>
             <div className="flex flex-col h-full items-center justify-center text-center">
-              {project.coverImage ? (
+              {project.coverVideo ? (
+                <div className="w-full h-48 mb-6 relative rounded-md overflow-hidden shadow-inner border border-gray-100 bg-black">
+                  <video 
+                    src={project.coverVideo} 
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ) : project.coverImage ? (
                 <div className="w-full h-48 mb-6 relative rounded-md overflow-hidden shadow-inner border border-gray-100">
                   <Image 
                     src={project.coverImage} 

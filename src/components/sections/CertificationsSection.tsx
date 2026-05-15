@@ -24,7 +24,7 @@ export default function CertificationsSection() {
           marginLeft: '-50vw',
           padding: '6rem 0 9rem',
           overflow: 'hidden',
-          background: 'linear-gradient(180deg, var(--color-butter) 0%, var(--color-peach) 35%, var(--color-peach) 65%, var(--color-teal) 100%)',
+          background: 'linear-gradient(180deg, var(--color-butter) 0%, var(--color-peach) 35%, var(--color-peach) 80%, var(--color-teal) 100%)',
         }}
       >
         <div style={{

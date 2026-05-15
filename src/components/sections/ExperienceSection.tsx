@@ -8,9 +8,9 @@ import ScribbleBackground from "@/components/ScribbleBackground";
 const cardsData = [
   {
     id: 1,
-    title: "Graphic Design Intern & Design Associate",
-    company: "GDSC CRCE",
-    date: "May 2025 – Present",
+    title: "Junior UI/UX & Design Associate",
+    company: "Google Developer Student Clubs CRCE",
+    date: "May 2025 – April 2026",
     bullets: [
       "Designed creatives using Figma, Canva, and Procreate",
       "Collaborated with marketing and technical teams",
@@ -60,10 +60,10 @@ const cardsData = [
     id: 3,
     title: "More coming soon",
     company: "",
-    date: "2025 –",
+    date: "2026 –",
     bullets: [
       "Currently exploring new opportunities",
-      "Open to design and ML roles",
+      "Open to AI/ML roles",
     ],
     bgClass: "bg-babyblue",
     textTitle: "text-dark",
@@ -85,7 +85,7 @@ export default function ExperienceSection() {
   return (
     <div className="bg-butter" style={{ position: 'relative', overflow: 'hidden' }}>
       {/* Background Layer: Grain + Scribbles with edge blending */}
-      <div 
+      <div
         style={{
           position: 'absolute',
           inset: 0,
@@ -95,7 +95,7 @@ export default function ExperienceSection() {
         }}
       >
         {/* Grainy Texture Overlay */}
-        <div 
+        <div
           style={{
             position: 'absolute',
             inset: 0,

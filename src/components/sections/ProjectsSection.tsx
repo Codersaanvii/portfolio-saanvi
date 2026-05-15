@@ -9,7 +9,8 @@ import ProjectFlipbook, { Project } from "@/components/ui/ProjectFlipbook";
 const projects: Project[] = [
   {
     title: "TinyML Intrusion Detection System",
-    year: "2025",
+    year: "2026",
+    coverVideo: "/images/tinyml-cover.mp4", // <-- Place your video in public/images/ and update this path
     description:
       "Edge-based IDS for ESP32-C6 using compressed XGBoost to classify network traffic as normal or malicious on low-power microcontrollers.",
     tags: ["Python", "XGBoost", "TinyML", "ESP32-C6", "Edge AI"],
@@ -22,7 +23,7 @@ const projects: Project[] = [
           },
           {
             title: "The Problem",
-            content: "IoT networks are highly susceptible to cyberattacks, but conventional Intrusion Detection Systems (IDS) are too resource-heavy to run on low-power edge devices like microcontrollers."
+            content: "IoT networks are highly susceptible to cyberattacks, but conventional Intrusion Detection Systems (IDS) are too heavy to run on low-power edge devices like microcontrollers."
           }
         ]
       },
@@ -34,7 +35,7 @@ const projects: Project[] = [
           },
           {
             title: "Results",
-            content: "Achieved over 95% accuracy while maintaining a memory footprint under 200KB, proving that complex machine learning models can effectively secure edge environments directly at the source."
+            content: "Achieved over 90% accuracy with an optimized and lightweight deployment approach, proving that complex machine learning models can effectively secure edge environments directly at the source."
           }
         ]
       }
@@ -69,7 +70,7 @@ function FolderCard({ project, onOpen }: { project: Project, onOpen: (rect: DOMR
             <div className="work-4 absolute inset-1 bg-[#B2D8D2] rounded-2xl transition-all ease duration-300 origin-bottom select-none group-hover:[transform:rotateX(-20deg)]" />
             <div className="work-3 absolute inset-1 bg-[#C8E8E2] rounded-2xl transition-all ease duration-300 origin-bottom group-hover:[transform:rotateX(-30deg)]" />
             <div className="work-2 absolute inset-1 bg-[#DCF0EC] rounded-2xl transition-all ease duration-300 origin-bottom group-hover:[transform:rotateX(-38deg)]" />
-            
+
             {/* Folder front */}
             <div className="work-1 absolute bottom-0 bg-gradient-to-t from-[#1E5C52] to-[#2D7A6E] w-full h-[156px] rounded-2xl rounded-tr-none after:absolute after:content-[''] after:bottom-[99%] after:right-0 after:w-[146px] after:h-[16px] after:bg-[#2D7A6E] after:rounded-t-2xl before:absolute before:content-[''] before:-top-[10px] before:right-[142px] before:size-3 before:bg-[#2D7A6E] before:[clip-path:polygon(100%_14%,50%_100%,100%_100%)] transition-all ease duration-300 origin-bottom flex items-end group-hover:shadow-[inset_0_20px_40px_#2D7A6E,_inset_0_-20px_40px_#1E5C52] group-hover:[transform:rotateX(-46deg)_translateY(1px)] z-[50]" />
           </motion.div>
@@ -190,7 +191,7 @@ export default function ProjectsSection() {
                 zIndex: 50
               }}
             />
-            
+
             {/* Project Flipbook Element */}
             <motion.div
               key="paper-modal"
@@ -213,7 +214,7 @@ export default function ProjectsSection() {
                 <ProjectFlipbook project={selectedProject} onClose={handleClose} />
               ) : (
                 <div className="bg-white p-8 rounded-xl max-w-sm w-full text-center shadow-2xl relative">
-                  <button 
+                  <button
                     onClick={handleClose}
                     className="absolute top-4 right-4 text-muted hover:text-dark transition-colors cursor-pointer"
                   >

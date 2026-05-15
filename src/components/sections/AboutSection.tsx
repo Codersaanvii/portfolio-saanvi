@@ -125,14 +125,14 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-3xl mx-auto">
 
           {/* ── Card 1 — coral ── */}
-          <div className="cork-card cork-card-1" style={{ position: "relative" }}>
+          <div className="cork-card cork-card-1 h-full" style={{ position: "relative" }}>
             {/* Stacked back layers */}
             <StackLayer borderColor="#E8694A" fill="#EDE8DF" transform="rotate(-4deg) translateY(-2%)" />
             <StackLayer borderColor="#E8694A" fill="#F5F0E8" transform="rotate(2deg) translateY(1%)" />
             {/* Pushpin + paperclip sit above the stack */}
             <Pushpin />
             <Paperclip />
-            <ScallopCard borderColor="#E8694A">
+            <ScallopCard borderColor="#E8694A" className="h-full">
               <h3
                 style={{ fontFamily: "var(--font-playfair)", fontWeight: 700, fontStyle: "italic", fontSize: "1rem", color: "#1A2E2C", marginBottom: "0.75rem" }}
               >
@@ -141,20 +141,19 @@ export default function AboutSection() {
               <p
                 style={{ fontFamily: "var(--font-dm-sans)", fontWeight: 400, fontSize: "0.875rem", color: "#1A2E2C", lineHeight: 1.7 }}
               >
-                Second-year B.Tech CSE student at CRCE Mumbai, minoring in Business Management
-                and Sustainability. I care about design that thinks and code that feels.
+                Second-year B.Tech CSE student at CRCE Mumbai. I am particularly drawn to the world of AI and Machine Learning. What fascinates me the most is understanding how these models work at a fundamental level and how they are being applied to solve real-world problems.
               </p>
             </ScallopCard>
           </div>
 
           {/* ── Card 2 — teal ── */}
-          <div className="cork-card cork-card-2" style={{ position: "relative" }}>
+          <div className="cork-card cork-card-2 h-full" style={{ position: "relative" }}>
             {/* Stacked back layers */}
             <StackLayer borderColor="#2D7A6E" fill="#EDE8DF" transform="rotate(-4deg) translateY(-2%)" />
             <StackLayer borderColor="#2D7A6E" fill="#F5F0E8" transform="rotate(2deg) translateY(1%)" />
             <Pushpin />
             <Paperclip />
-            <ScallopCard borderColor="#2D7A6E">
+            <ScallopCard borderColor="#2D7A6E" className="h-full">
               <h3
                 style={{ fontFamily: "var(--font-playfair)", fontWeight: 700, fontStyle: "italic", fontSize: "1rem", color: "#1A2E2C", marginBottom: "0.75rem" }}
               >
@@ -163,9 +162,8 @@ export default function AboutSection() {
               <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
                 {[
                   "B.Tech CSE @ CRCE Mumbai",
-                  "Minor: Business Mgmt & Sustainability",
-                  "Design Associate @ GDSC CRCE",
-                  "Exploring TinyML & Edge AI",
+                  "Minor: Business Management & Sustainability",
+                  "Focused on Machine Learning & Deep learning",
                 ].map((item) => (
                   <li key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", marginBottom: "0.35rem" }}>
                     <span style={{ color: "#2D7A6E", fontSize: "0.55rem", marginTop: "0.45rem", flexShrink: 0 }}>◆</span>

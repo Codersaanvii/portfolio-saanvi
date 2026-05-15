@@ -32,7 +32,7 @@ export default function ContactSection() {
 
           <div className="w-full h-[1px] bg-white/20 mb-6" />
           <p className="font-sans text-[0.8rem] text-white/60">
-            Saanvi Desai · 2025
+            Saanvi Desai
           </p>
         </div>
       </Section>

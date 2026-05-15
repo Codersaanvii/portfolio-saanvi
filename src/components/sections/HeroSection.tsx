@@ -212,14 +212,14 @@ export default function HeroSection() {
               {/* Text content */}
               <div className="md:pr-24">
                 <p className="font-script text-teal text-[1.8rem] leading-none mb-4">
-                  Designing the Future
+                  Coding the Future
                 </p>
 
                 <h1
                   className="font-serif font-black text-dark uppercase leading-[1.05] tracking-[-0.01em] mb-5"
                   style={{ fontSize: "clamp(2rem, 4vw, 2.8rem)" }}
                 >
-                  DESIGN.<br />DEVELOP.<br />EXPLORE.
+                  CODE.<br />DEVELOP.<br />EXPLORE.
                 </h1>
 
                 <hr className="border-0 border-t border-teal-light mb-3" />
@@ -229,7 +229,7 @@ export default function HeroSection() {
                 </p>
 
                 <p className="font-sans text-[0.875rem] text-muted leading-[1.6] mb-4">
-                  CS Student at CRCE Mumbai &nbsp;·&nbsp; Designer &nbsp;·&nbsp; ML Enthusiast
+                  CS Student at FRCRCE Mumbai &nbsp;·&nbsp; AI ML enthusiast&nbsp;·&nbsp;
                 </p>
 
                 <hr className="border-0 border-t border-teal-light mb-6" />
