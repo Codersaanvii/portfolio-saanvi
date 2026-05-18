@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import Section from "@/components/ui/Section";
 import { motion, AnimatePresence } from "framer-motion";
 
-import ProjectFlipbook, { Project } from "@/components/ui/ProjectFlipbook";
+import ProjectSlider, { Project } from "@/components/ui/ProjectSlider";
 
 const projects: Project[] = [
   {
@@ -43,7 +43,7 @@ const projects: Project[] = [
   },
 ];
 
-// PaperContent removed in favor of ProjectFlipbook
+// PaperContent removed in favor of ProjectSlider
 
 function FolderCard({ project, onOpen }: { project: Project, onOpen: (rect: DOMRect) => void }) {
   const folderRef = useRef<HTMLDivElement>(null);
@@ -211,7 +211,7 @@ export default function ProjectsSection() {
               className="fixed inset-0 z-60 flex items-center justify-center p-4 md:p-10"
             >
               {selectedProject !== 'placeholder' ? (
-                <ProjectFlipbook project={selectedProject} onClose={handleClose} />
+                <ProjectSlider project={selectedProject} onClose={handleClose} />
               ) : (
                 <div className="bg-white p-8 rounded-xl max-w-sm w-full text-center shadow-2xl relative">
                   <button
